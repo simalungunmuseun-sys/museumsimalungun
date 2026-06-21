@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Simalungun</title>
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+    <link rel="shortcut icon" href="logo.jpeg" type="image/jpeg">
+    <style>
+        :root {
+            --gold: #f1c40f;
+            --gold-dark: #f39c12;
+            --bg-dark: #0f1320;
+            --text-light: #eef2f5;
+            --card: rgba(255, 255, 255, 0.08);
+            --border: rgba(241, 196, 15, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #070b16;
+            background: linear-gradient(rgba(7,11,22,0.6), rgba(7,11,22,0.6)), url('logo.jpeg') center/cover fixed no-repeat;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 16px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(7, 11, 22, 0.95);
+            border-bottom: 1px solid rgba(241, 196, 15, 0.12);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .brand img.brand-img {
+            width: 43px;
+            height: auto;
+            display: block;
+        }
+        .brand .brand-text {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+
+        .menu {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: #d7d7d7;
+            transition: color 0.25s ease;
+        }
+
+        .menu a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: grid;
+            place-items: center;
+            padding: 80px 24px 40px;
+            background: linear-gradient(180deg, rgba(7,11,22,0.92) 0%, rgba(7,11,22,0.82) 30%, rgba(7,11,22,0.96) 100%),
+                url('logo.jpeg') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 980px;
+            width: 100%;
+            text-align: center;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            background: rgba(3, 6, 15, 0.72);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 4vw, 4.6rem);
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #e4e8f0;
+            max-width: 760px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            text-align: left;
+        }
+
+        .hero-card strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--gold);
+        }
+
+        .hero-card span {
+            display: block;
+            font-size: 0.95rem;
+            color: #d7d7d7;
+        }
+
+        main {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 32px 24px 80px;
+            display: grid;
+            gap: 60px;
+        }
+
+        section {
+            padding-top: 20px;
+        }
+
+        .section-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-heading {
+            font-size: clamp(2rem, 3vw, 3rem);
+            margin-bottom: 18px;
+            color: #f5f6f8;
+        }
+
+        .about-grid,
+        .visit-grid,
+        .contact-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .about-grid {
+            grid-template-columns: 1.2fr 0.8fr;
+        }
+
+        .text-card,
+        .info-card,
+        .facility-card,
+        .contact-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+        }
+
+        .text-card h3,
+        .info-card h3,
+        .facility-card h3,
+        .contact-card h3 {
+            color: var(--gold);
+            margin-bottom: 14px;
+            font-size: 1.2rem;
+        }
+
+        .text-card p,
+        .info-card p,
+        .facility-card p,
+        .contact-card p {
+            color: #d4d9e0;
+            margin-bottom: 16px;
+        }
+
+        .info-list,
+        .facility-list,
+        .contact-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .info-list li,
+        .facility-list li,
+        .contact-list li {
+            list-style: none;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 16px;
+            color: #e8ebf0;
+        }
+
+        .info-list li strong,
+        .facility-list li strong,
+        .contact-list li strong {
+            color: var(--gold);
+        }
+
+        .about-image {
+            display: grid;
+            gap: 18px;
+        }
+
+        .about-image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .visit-grid {
+            grid-template-columns: repeat(2, minmax(260px, 1fr));
+        }
+
+        .facility-card {
+            display: grid;
+            gap: 14px;
+        }
+
+        .facility-card li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .partner-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 18px;
+            margin: 0 auto 32px;
+            max-width: 920px;
+            padding: 24px 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+        }
+
+        .partner-logos div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 64px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px dashed rgba(241,196,15,0.18);
+            color: #d4d9e0;
+            font-size: 0.88rem;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .partner-logos img {
+            max-width: 56px;
+            max-height: 56px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: start;
+        }
+
+        .map-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 320px;
+        }
+
+        .footer {
+            padding: 24px;
+            text-align: center;
+            color: #9aa1b6;
+            border-top: 1px solid rgba(241, 196, 15, 0.12);
+        }
+
+        .button-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 999px;
+            border: none;
+            background: var(--gold);
+            color: #141414;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(241, 196, 15, 0.25);
+        }
+
+        @media(max-width: 900px) {
+            .about-grid,
+            .visit-grid,
+            .contact-grid,
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-inner">
+            <div class="brand">
+                <img src="museum_logo.png" alt="logo" class="brand-img" onerror="this.onerror=null;this.src='logo.jpeg'">
+                <div class="brand-text">Museum Simalungun</div>
+            </div>
+            <nav class="menu" aria-label="Navigasi utama">
+                <a href="index.html">Beranda</a>
+                <a href="jelajahi.html">Jelajahi</a>
+                <a href="admin.html">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+
+
+
+    <main>
+        <section id="about">
+            
+            <h2 class="section-heading">Tentang Museum Simalungun</h2>
+            <div class="about-grid">
+                <div class="text-card">
+                    <h3>Sejarah Berdiri</h3>
+                    <p>Pada tanggal 14 Januari 1937, para Raja Marpitu Simalungun dan tokoh masyarakat berkumpul dalam Harungguan Bolon, Dari musyawarah ini lahir gagasan mendirikan Rumah Pusaka Simalungun sebagai pusat pelestarian budaya.Pada tahun 1939 pembangunan dimulai. Dengan semangat gotong royong, para pengrajin dan masyarakat membangun sebuah rumah pusaka yang akan menjadi simbol kebanggaan budaya Simalungun.</p>
+                    <p>Tujuan pendirian museum adalah menjadi ruang edukasi bagi generasi muda, serta menjadi pusat pelestarian budaya dan warisan sejarah daerah.</p>
+
+                    <h3>Visi & Misi</h3>
+                    <p><strong>Visi:</strong> Menjadi pusat pelestarian dan pengembangan budaya Simalungun yang berkelanjutan, serta menjadi wadah edukasi sejarah bagi generasi masa kini dan yang akan datang.</p>
+                    <p><strong>Misi:</strong> Mengumpulkan, melestarikan, dan menampilkan koleksi benda-benda bersejarah dan budaya Simalungun; menyelenggarakan penelitian dan dokumentasi sejarah daerah; serta mengadakan kegiatan edukasi dan promosi budaya untuk masyarakat umum dan generasi muda.</p>
+                </div>
+                <div class="about-image">
+                    <img src="download.jpg" alt="Foto Museum Simalungun">
+                    <img src="museum.jpg" alt="Gedung Museum Simalungun">
+                </div>
+            </div>
+        </section>
+
+        <section id="visit">
+            <div class="section-title">Tiket & Kunjungan</div>
+            <h2 class="section-heading">Jam Kunjungan & Harga Tiket</h2>
+            <div class="visit-grid">
+                <div class="info-card">
+                    <h3>Jam Buka</h3>
+                    <p>Senin - Minggu</p>
+                    <ul class="info-list">
+                        <li><strong>Jam:</strong> 08.00 - 16.00 WIB</li>
+                        <li><strong>Istirahat:</strong> 12.00 - 13.00 WIB</li>
+                        <li><strong>Penutupan:</strong> Jumlah pengunjung dibatasi setiap hari</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>Harga Tiket</h3>
+                    <ul class="info-list">
+                        <li><strong>Dewasa:</strong> Rp 15.000</li>
+                        <li><strong>Pelajar:</strong> Rp 10.000</li>
+                        <li><strong>Anak:</strong> Rp 7.000</li>
+                        <li><strong>Wisman:</strong> Rp 25.000</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+                <a class="button-primary" href="jelajahi.html">Jelajahi Museum</a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-title">Kontak</div>
+            <h2 class="section-heading">Kontak & Lokasi Museum</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <p>Datanglah ke Museum Simalungun untuk mengenal sejarah dan budaya yang kaya. Kami siap menyambut wisatawan lokal dan mancanegara.</p>
+                    <ul class="contact-list">
+                        <li><strong>Alamat:</strong> Jl. Sudirman P No.15, Proklamasi, Kec. Siantar Bar., Kota Pematang Siantar, Sumatera Utara 21144, Indonesia</li>
+                        <li><strong>Telepon / WA:</strong> +62 812-3456-7890</li>
+                        <li><strong>Email:</strong> info@museumsimalungun.id</li>
+                        <li><strong>Instagram:</strong> @museumsimalungun</li>
+                        <li><strong>Facebook:</strong> Museum Simalungun</li>
+                    </ul>
+                </div>
+                <div class="map-frame">
+                    <iframe width="100%" height="100%" style="border:0; min-height:320px;" loading="lazy" allowfullscreen
+                        src="https://www.google.com/maps?q=Jl.+Utama+Museum+Simalungun,+Pematang+Silimahuta,+Simalungun,+Sumatera+Utara&output=embed"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="partner-logos" aria-label="Logo mitra museum">
+        <div><img src="simalungun_crest.png" alt="Simalungun Crest" onerror="this.onerror=null;this.src='logo.jpeg'"></div>
+        <a href="https://www.simalungunkab.go.id/" target="_blank" rel="noopener">
+            <div><img src="simalungun_crest.png" alt="Simalungun Crest" onerror="this.onerror=null;this.src='Lambang_kabupaten_simalungun.png'"></div>
+        </a>
+        <a href="https://www.instagram.com/disbudparekraf_simalungun/" target="_blank" rel="noopener">
+            <div><img src="dinas.jpeg" alt="Simalungun Crest" onerror="this.onerror=null;this.src='Lambang_kabupaten_simalungun.png'"></div>
+        <a href="jelajahi.html"><div>Logo 4</div></a>
+        <a href="jelajahi.html"><div>Logo 5</div></a>
+        <a href="jelajahi.html"><div>Logo 6</div></a>
+        <a href="jelajahi.html"><div>Logo 7</div></a>
+    </section>
+
+    <footer class="footer">
+        &copy; 2026 Museum Simalungun - Menjaga Sejarah & Budaya Daerah by MHD. Fajar Cibro (cpns disbudparekraf simalungun 2024)
+    </footer>
+</body>
+</html>
